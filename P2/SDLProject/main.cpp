@@ -19,7 +19,7 @@ bool gameIsRunning = true;
 bool notStarted = true;
 
 ShaderProgram program;
-glm::mat4 viewMatrix, projectionMatrix, modelMatrix, ballMatrix, redMatrix, blueMatrix;
+glm::mat4 viewMatrix, projectionMatrix, modelMatrix, ballMatrix, redMatrix, blueMatrix, keyInstructionsMatrix;
 
 // Red and Blue (left and right) Paddles
 glm::vec3 red_position, blue_position = glm::vec3(0, 0, 0);
@@ -39,9 +39,15 @@ glm::vec3 ball_scale = glm::vec3(0.30f, 0.30f, 1.0f);
 float ball_height =  ball_scale.y;
 float ball_width = ball_scale.x;
 
+//Key instructions image
+glm::vec3 keyInstructions_scale = glm::vec3(7.5f, 7.5f, 1.0f);
+float keyInstructions_scale_increment = 7.5f;
+
 GLuint ballTextureID;
 GLuint redTextureID;
 GLuint blueTextureID;
+GLuint keyInstructionsTextureID;
+
 
 GLuint LoadTexture(const char* filePath) {
     int w, h, n;
@@ -92,6 +98,9 @@ void Initialize() {
     ballTextureID = LoadTexture("pong ball.png");
     redTextureID = LoadTexture("red paddle.png");
     blueTextureID = LoadTexture("blue paddle.png");
+    keyInstructionsTextureID = LoadTexture("pong keys.png");
+    
+    keyInstructionsMatrix = glm::scale(modelMatrix, keyInstructions_scale);
 }
 
 bool wallAboveCollision(float y, float height) {
@@ -169,6 +178,13 @@ void Update() {
     float deltaTime = ticks - lastTicks;
     lastTicks = ticks;
 
+    if (keyInstructions_scale.x > 0 && !notStarted) {
+        keyInstructions_scale = glm::vec3(keyInstructions_scale.x - keyInstructions_scale_increment * deltaTime,
+            keyInstructions_scale.y - keyInstructions_scale_increment * deltaTime,
+            keyInstructions_scale.z - keyInstructions_scale_increment * deltaTime );
+        keyInstructionsMatrix = glm::scale(modelMatrix, keyInstructions_scale);
+    }
+
     red_position += red_movement * paddle_speed * deltaTime;
     redMatrix = glm::translate(modelMatrix, glm::vec3(-4.8f, 0.0f, 0.0f));
     redMatrix = glm::translate(redMatrix, red_position);
@@ -227,6 +243,12 @@ void drawBlue() {
 
 }
 
+void drawKeyInstructions() {
+    program.SetModelMatrix(keyInstructionsMatrix);
+    glBindTexture(GL_TEXTURE_2D, keyInstructionsTextureID);
+    glDrawArrays(GL_TRIANGLES, 0, 6);
+}
+
 void Render() {
     float vertices[] = { -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5 };
     float texCoords[] = { 0.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0 };
@@ -238,6 +260,7 @@ void Render() {
     glVertexAttribPointer(program.texCoordAttribute, 2, GL_FLOAT, false, 0, texCoords);
     glEnableVertexAttribArray(program.texCoordAttribute);
 
+    drawKeyInstructions();
     drawBall();
     drawRed();
     drawBlue();
