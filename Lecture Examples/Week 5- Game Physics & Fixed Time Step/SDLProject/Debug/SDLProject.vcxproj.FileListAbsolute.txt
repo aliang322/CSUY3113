@@ -1,0 +1,2 @@
+C:\Users\ephyw\Desktop\VisualStudioSDLProject\SDLProject\Debug\SDLProject.exe
+C:\Users\ephyw\Desktop\VisualStudioSDLProject\SDLProject\Debug\SDLProject.pdb
