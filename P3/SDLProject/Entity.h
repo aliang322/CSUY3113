@@ -21,6 +21,7 @@ public:
     float width = 1;
     float height = 1;
 
+    bool canMove = true;
     float speed;
 
     GLuint textureID;
@@ -34,8 +35,11 @@ public:
     bool collidedLeft = false;
     bool collidedRight = false;
 
+    bool enteredPortal = false;
+
     Entity();
 
+    bool isNextToOrIn(Entity* other);
     bool CheckCollision(Entity* other);
     void CheckCollisionsY(Entity* objects, int objectCount);
     void CheckCollisionsX(Entity* objects, int objectCount);
