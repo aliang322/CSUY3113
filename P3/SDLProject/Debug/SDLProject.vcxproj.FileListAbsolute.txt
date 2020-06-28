@@ -1,0 +1,4 @@
+C:\Users\ephyw\Desktop\VisualStudioSDLProject\SDLProject\Debug\SDLProject.exe
+C:\Users\ephyw\Desktop\VisualStudioSDLProject\SDLProject\Debug\SDLProject.pdb
+C:\Users\ephyw\Desktop\github projects\CSUY3113\P3\SDLProject\Debug\SDLProject.exe
+C:\Users\ephyw\Desktop\github projects\CSUY3113\P3\SDLProject\Debug\SDLProject.pdb
