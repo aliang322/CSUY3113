@@ -13,7 +13,7 @@
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
-
+#include <vector>
 #include "Entity.h"
 
 #define PLATFORM_COUNT 11
@@ -58,7 +58,7 @@ GLuint LoadTexture(const char* filePath) {
 
 void Initialize() {
     SDL_Init(SDL_INIT_VIDEO);
-    displayWindow = SDL_CreateWindow("Textured!", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 480, SDL_WINDOW_OPENGL);
+    displayWindow = SDL_CreateWindow("Andrew Liang's Project 4- Rise of the AI", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 480, SDL_WINDOW_OPENGL);
     SDL_GLContext context = SDL_GL_CreateContext(displayWindow);
     SDL_GL_MakeCurrent(displayWindow, context);
 
@@ -114,7 +114,7 @@ void Initialize() {
     state.player->jumpPower = 6.5f;
 
     state.platforms = new Entity[PLATFORM_COUNT];
-    GLuint platformTextureID = LoadTexture("platformPack_tile001.png");
+    GLuint platformTextureID = LoadTexture("grass.png");
 
     for (int i = 0; i < PLATFORM_COUNT; i++) {
         state.platforms[i].entityType = PLATFORM;   
@@ -219,6 +219,58 @@ void Update() {
     accumulator = deltaTime;
 }
 
+void DrawText(ShaderProgram* program, GLuint fontTextureID, std::string text,
+    float size, float spacing, glm::vec3 position) {
+    float width = 1.0f / 16.0f;
+    float height = 1.0f / 16.0f;
+
+    std::vector<float> vertices;
+    std::vector<float> texCoords;
+
+    for (int i = 0; i < text.size(); i++) {
+        int index = (int)text[i];
+        float offset = (size + spacing) * i;
+        float u = (float)(index % 16) / 16.0f;
+        float v = (float)(index / 16) / 16.0f;
+
+        vertices.insert(vertices.end(), {
+            offset + (-0.5f * size), 0.5f * size,
+            offset + (-0.5f * size), -0.5f * size,
+            offset + (0.5f * size), 0.5f * size,
+            offset + (0.5f * size), -0.5f * size,
+            offset + (0.5f * size), 0.5f * size,
+            offset + (-0.5f * size), -0.5f * size,
+            });
+
+        texCoords.insert(texCoords.end(), {
+            u, v,
+            u, v + height,
+            u + width, v,
+            u + width, v + height,
+            u + width, v,
+            u, v + height,
+            });
+    }
+
+    glm::mat4 modelMatrix = glm::mat4(1.0f);
+    modelMatrix = glm::translate(modelMatrix, position);
+
+    program->SetModelMatrix(modelMatrix);
+
+    glUseProgram(program->programID);
+
+    glVertexAttribPointer(program->positionAttribute, 2, GL_FLOAT, false, 0, vertices.data());
+    glEnableVertexAttribArray(program->positionAttribute);
+
+    glVertexAttribPointer(program->texCoordAttribute, 2, GL_FLOAT, false, 0, texCoords.data());
+    glEnableVertexAttribArray(program->texCoordAttribute);
+
+    glBindTexture(GL_TEXTURE_2D, fontTextureID);
+    glDrawArrays(GL_TRIANGLES, 0, (int)(text.size() * 6));
+
+    glDisableVertexAttribArray(program->positionAttribute);
+    glDisableVertexAttribArray(program->texCoordAttribute);
+}
 
 void Render() {
     glClear(GL_COLOR_BUFFER_BIT);
@@ -232,6 +284,21 @@ void Render() {
     }
 
     state.player->Render(&program);
+
+    bool allEnemiesDefeated = true;
+    for (int i = 0; i < ENEMY_COUNT; i++) {
+        if (state.enemies[i].alive) allEnemiesDefeated = false;
+    }
+
+    if (allEnemiesDefeated) {
+        DrawText(&program, LoadTexture("font2.png"), "[ You Win ]", 0.5f, -0.2f, glm::vec3(-1.75f, 0.5f, 0));
+        DrawText(&program, LoadTexture("font2.png"), ">> All Monsters Defeated", 0.4f, -0.2f, glm::vec3(-2.50f, 0.0f, 0));
+    }
+
+    else if (state.player->alive == false) {
+        DrawText(&program, LoadTexture("font2.png"), "[ You Lose ]", 0.5f, -0.2f, glm::vec3(-1.75f, 0.5f, 0));
+        DrawText(&program, LoadTexture("font2.png"), ">> Defeated by a Monster", 0.4f, -0.2f, glm::vec3(-2.50f, 0.0f, 0));
+    }
 
     SDL_GL_SwapWindow(displayWindow);
 }

@@ -89,12 +89,12 @@ void Entity::AIWaitAndGo(Entity* player) {
     switch (aiState) {
         case IDLE:
             movement = glm::vec3(0);
-            if (glm::distance(position.x, player->position.x) < 2) aiState = WALKING;
+            if (glm::distance(position.x, player->position.x) < 2.5) aiState = WALKING;
             break;
         case WALKING:
             if (player->position.x < position.x) movement = glm::vec3(-1, 0, 0);
             else movement = glm::vec3(1, 0, 0);
-            if (glm::distance(position.x, player->position.x) >= 2) aiState = IDLE;
+            if (glm::distance(position.x, player->position.x) >= 2.5) aiState = IDLE;
             break;
         case ATTACKING:
             break;
@@ -127,7 +127,7 @@ void Entity::AIDigger(Entity* player) {
 void Entity::AIJumper(Entity* player) {
     switch (aiState) {
     case IDLE:
-        if (glm::distance(position, player->position) < 1.5f) aiState = JUMPING;
+        if (glm::distance(position, player->position) < 2.0f) aiState = JUMPING;
         break;
     case WALKING:
         break;
