@@ -1,0 +1,8 @@
+C:\Users\ephyw\Desktop\VisualStudioSDLProject\SDLProject\Debug\SDLProject.exe
+C:\Users\ephyw\Desktop\VisualStudioSDLProject\SDLProject\Debug\SDLProject.pdb
+C:\Users\ephyw\Desktop\github projects\CSUY3113\Lecture Examples\Week 7- Basic AI, Level Design\SDLProject\Debug\SDLProject.exe
+C:\Users\ephyw\Desktop\github projects\CSUY3113\Lecture Examples\Week 7- Basic AI, Level Design\SDLProject\Debug\SDLProject.pdb
+C:\Users\ephyw\Desktop\github projects\CSUY3113\Lecture Examples\Week 8- Platformer Levels, Scenes\SDLProject\Debug\SDLProject.exe
+C:\Users\ephyw\Desktop\github projects\CSUY3113\Lecture Examples\Week 8- Platformer Levels, Scenes\SDLProject\Debug\SDLProject.pdb
+C:\Users\ephyw\Desktop\github projects\CSUY3113\P5\SDLProject\Debug\SDLProject.exe
+C:\Users\ephyw\Desktop\github projects\CSUY3113\P5\SDLProject\Debug\SDLProject.pdb
