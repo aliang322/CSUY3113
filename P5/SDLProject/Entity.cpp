@@ -169,7 +169,7 @@ void Entity::AIDigger(Entity* player) {
     switch (aiState) {
     case IDLE:
         if (glm::distance(position, player->position) > 2.5f) aiState = DIGGING;
-        else position = glm::vec3(position.x, -2.25f, position.z);
+        else position = glm::vec3(position.x, -6.0f, position.z);
         break;
     case WALKING:
         break;
@@ -177,7 +177,7 @@ void Entity::AIDigger(Entity* player) {
         break;
     case DIGGING:
         if (glm::distance(position, player->position) <= 2.5f) aiState = IDLE;
-        else position = glm::vec3(position.x, -3.25f, position.z);
+        else position = glm::vec3(position.x, -7.0f, position.z);
         break;
     case JUMPING:
         break;

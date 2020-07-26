@@ -15,9 +15,11 @@
 #include "Entity.h"
 #include "Map.h"
 #include "Scene.h"
+#include "MainMenu.h"
 #include "Level1.h"
 #include "Level2.h"
-#include "MainMenu.h"
+#include "Level3.h"
+#include "WinMenu.h"
 
 SDL_Window* displayWindow;
 bool gameIsRunning = true;
@@ -26,7 +28,7 @@ ShaderProgram program;
 glm::mat4 viewMatrix, modelMatrix, projectionMatrix;
 
 Scene* currentScene;
-Scene* sceneList[3];
+Scene* sceneList[5];
 
 void SwitchToScene(Scene* scene) {
     currentScene = scene;
@@ -64,8 +66,10 @@ void Initialize() {
     sceneList[0] = new MainMenu();
     sceneList[1] = new Level1();
     sceneList[2] = new Level2();
+    sceneList[3] = new Level3();
+    sceneList[4] = new WinMenu();
     
-    SwitchToScene(sceneList[0]);
+    SwitchToScene(sceneList[3]);
 }
 
 void ProcessInput() {
@@ -90,7 +94,7 @@ void ProcessInput() {
                 if(currentScene->state.player->collidedBottom) currentScene->state.player->jump = true;
                 break;
             case SDLK_RETURN:
-                if(currentScene == sceneList[0]) SwitchToScene(sceneList[1]);
+                if(currentScene == sceneList[0] || currentScene == sceneList[4]) SwitchToScene(sceneList[1]);
                 break;
             }
             break; // SDL_KEYDOWN
@@ -135,11 +139,14 @@ void Update() {
     accumulator = deltaTime;
 
     viewMatrix = glm::mat4(1.0f);
-    if (currentScene->state.player->position.x > 5) {
+    if (currentScene->state.player->position.x > 5 && currentScene->state.player->position.x < 8) {
         viewMatrix = glm::translate(viewMatrix, glm::vec3(-currentScene->state.player->position.x, 3.75, 0));
     }
-    else {
+    else if (currentScene->state.player->position.x <= 5){
         viewMatrix = glm::translate(viewMatrix, glm::vec3(-5, 3.75, 0));
+    }
+    else if (currentScene->state.player->position.x >= -5) {
+        viewMatrix = glm::translate(viewMatrix, glm::vec3(-8, 3.75, 0));
     }
 }
 
@@ -148,10 +155,10 @@ void Render() {
     glClear(GL_COLOR_BUFFER_BIT);
 
     program.SetViewMatrix(viewMatrix);
-
-    currentScene->state.enemies[0].Render(&program);
     
     currentScene->Render(&program);
+
+    currentScene->state.enemies[0].Render(&program);
 
     SDL_GL_SwapWindow(displayWindow);
 }
