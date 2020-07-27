@@ -74,8 +74,10 @@ void MainMenu::Render(ShaderProgram* program) {
 	
     GLuint fontTextureID = Util::LoadTexture("pixel_font.png");
 
-    Util::DrawText(program, fontTextureID, "Hunter", 0.3f, 0.1f, glm::vec3(3.0, -1.0, 0));
-    Util::DrawText(program, fontTextureID, "Press Enter to Play", 0.3f, 0.1f, glm::vec3(3.0, -3.0, 0));
+    Util::DrawText(program, fontTextureID, "Hunter", 0.7f, 0.1f, glm::vec3(5.0, -2.0, 0));
+    Util::DrawText(program, fontTextureID, "Press Enter to Play", 0.3f, 0.1f, glm::vec3(3.2, -3.0, 0));
+    Util::DrawText(program, fontTextureID, "Left and Right Arrows Keys to Move", 0.15f, 0.05f, glm::vec3(3.5, -3.85, 0));
+    Util::DrawText(program, fontTextureID, "Spacebar to Jump", 0.15f, 0.05f, glm::vec3(5.5, -4.2, 0));
 
     state.map->Render(program);
 	state.player->Render(program);
