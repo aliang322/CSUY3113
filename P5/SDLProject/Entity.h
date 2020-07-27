@@ -25,6 +25,7 @@ public:
     AIType aiType;
     AIState aiState;
     
+    glm::vec3 spawn;
     glm::vec3 position;
     glm::vec3 movement;
     glm::vec3 acceleration;
@@ -33,6 +34,7 @@ public:
     float width = 1;
     float height = 1;
 
+    int lives = 3;
     bool alive = true;
     bool jump = false;
     float jumpPower = 0;

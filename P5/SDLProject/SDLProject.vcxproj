@@ -130,7 +130,8 @@
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Level1.cpp" />
     <ClCompile Include="Level2.cpp" />
-    <ClCompile Include="Level3cpp.cpp" />
+    <ClCompile Include="Level3.cpp" />
+    <ClCompile Include="LoseMenu.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="Map.cpp" />
@@ -144,6 +145,7 @@
     <ClInclude Include="Level1.h" />
     <ClInclude Include="Level2.h" />
     <ClInclude Include="Level3.h" />
+    <ClInclude Include="LoseMenu.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Scene.h" />

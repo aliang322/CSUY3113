@@ -26,6 +26,9 @@ void Level1::Initialize() {
 	
     state.player = new Entity();
     state.player->entityType = PLAYER;
+    state.player->lives = state.lives;
+
+    state.player->spawn = glm::vec3(2, -3, 0);
     state.player->position = glm::vec3(2, -3, 0);
     state.player->movement = glm::vec3(0);
     state.player->acceleration = glm::vec3(0, -9.81f, 0);
@@ -67,7 +70,8 @@ void Level1::Initialize() {
 
 void Level1::Update(float deltaTime) {
     state.player->Update(deltaTime, state.player, state.enemies, LEVEL1_ENEMY_COUNT, state.map);
-
+    state.lives = state.player->lives;
+    if (state.lives <= 0) state.nextScene = 5;
     if (state.player->position.x >= 12.5) state.nextScene = 2;
 }
 

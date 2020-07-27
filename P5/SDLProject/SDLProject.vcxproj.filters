@@ -42,10 +42,13 @@
     <ClCompile Include="MainMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Level3cpp.cpp">
+    <ClCompile Include="WinMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="WinMenu.cpp">
+    <ClCompile Include="Level3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LoseMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -78,6 +81,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="WinMenu.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LoseMenu.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

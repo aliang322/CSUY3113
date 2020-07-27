@@ -1,6 +1,7 @@
 #include "Entity.h"
 
 Entity::Entity(){
+    spawn = glm::vec3(0);
     position = glm::vec3(0);
     movement = glm::vec3(0);
     acceleration = glm::vec3(0);
@@ -133,8 +134,15 @@ void Entity::CheckCollisionsEnemies(Entity* enemies, int enemyCount) {
                 enemy->isActive = false;
             }
             else {
-                alive = false;
-                isActive = false;
+                if (lives == 1) {
+                    lives -= 1;
+                    alive = false;
+                    isActive = false;
+                }
+                else {
+                    lives -= 1;
+                    position = spawn;
+                }
             }
         }
 
@@ -152,8 +160,8 @@ void Entity::AIWaitAndGo(Entity* player) {
         if (glm::distance(position.x, player->position.x) < 2.5) aiState = WALKING;
         break;
     case WALKING:
-        if (player->position.x < position.x) movement = glm::vec3(-1, 0, 0);
-        else movement = glm::vec3(1, 0, 0);
+        if (player->position.x < position.x) movement = glm::vec3(-1.4, 0, 0);
+        else movement = glm::vec3(1.4, 0, 0);
         if (glm::distance(position.x, player->position.x) >= 2.5) aiState = IDLE;
         break;
     case ATTACKING:

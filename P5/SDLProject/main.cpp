@@ -20,6 +20,7 @@
 #include "Level2.h"
 #include "Level3.h"
 #include "WinMenu.h"
+#include "LoseMenu.h"
 
 SDL_Window* displayWindow;
 bool gameIsRunning = true;
@@ -28,7 +29,7 @@ ShaderProgram program;
 glm::mat4 viewMatrix, modelMatrix, projectionMatrix;
 
 Scene* currentScene;
-Scene* sceneList[5];
+Scene* sceneList[6];
 
 void SwitchToScene(Scene* scene) {
     currentScene = scene;
@@ -68,8 +69,11 @@ void Initialize() {
     sceneList[2] = new Level2();
     sceneList[3] = new Level3();
     sceneList[4] = new WinMenu();
+    sceneList[5] = new LoseMenu();
+
+    sceneList[1]->state.lives = 3;
     
-    SwitchToScene(sceneList[3]);
+    SwitchToScene(sceneList[0]);
 }
 
 void ProcessInput() {
@@ -94,7 +98,10 @@ void ProcessInput() {
                 if(currentScene->state.player->collidedBottom) currentScene->state.player->jump = true;
                 break;
             case SDLK_RETURN:
-                if(currentScene == sceneList[0] || currentScene == sceneList[4]) SwitchToScene(sceneList[1]);
+                if (currentScene == sceneList[0] || currentScene == sceneList[4] || currentScene == sceneList[5]) {
+                    sceneList[1]->state.lives = 3;
+                    SwitchToScene(sceneList[1]);
+                }
                 break;
             }
             break; // SDL_KEYDOWN
@@ -174,8 +181,12 @@ int main(int argc, char* argv[]) {
     while (gameIsRunning) {
         ProcessInput();
         Update();
-
-        if (currentScene->state.nextScene >= 0) SwitchToScene(sceneList[currentScene->state.nextScene]);
+        if (currentScene->state.nextScene >= 0) {
+            if (currentScene->state.nextScene == 2 || currentScene->state.nextScene == 3) {
+                sceneList[currentScene->state.nextScene]->state.lives = currentScene->state.lives;
+            }
+            SwitchToScene(sceneList[currentScene->state.nextScene]);
+        }
 
         Render();
     }
