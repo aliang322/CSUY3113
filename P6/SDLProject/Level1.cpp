@@ -2,7 +2,7 @@
 #define LEVEL1_WIDTH 20
 #define LEVEL1_HEIGHT 20
 
-#define ENEMY_COUNT 2   
+#define ENEMY_COUNT 4   
 
 unsigned int level1_data[] =
 { 
@@ -54,7 +54,7 @@ void Level1::Initialize(int livesLeft) {
     state.enemies[0].position = glm::vec3(2.0f, 3.0f, 0);
     state.enemies[0].speed = 0.3;
     state.enemies[0].aiType = FOLLOWER;
-    state.enemies[0].aiState = FOLLOWING;
+    state.enemies[0].aiState = FOLLOW;
     state.enemies[0].isActive = true;
 
     state.enemies[1].entityType = ENEMY;
@@ -65,6 +65,24 @@ void Level1::Initialize(int livesLeft) {
     state.enemies[1].aiType = GUARD;
     state.enemies[1].aiState = IDLE;
     state.enemies[1].isActive = true;
+
+    state.enemies[2].entityType = ENEMY;
+    state.enemies[2].textureID = enemyTextureID;
+    state.enemies[2].position = glm::vec3(6.0f, -6.0f, 0);
+    state.enemies[2].spawn = glm::vec3(6.0f, -6.0f, 0);
+    state.enemies[2].speed = 0.8;
+    state.enemies[2].aiType = VERTICAL_PATROLLER;
+    state.enemies[2].aiState = PATROL;
+    state.enemies[2].isActive = true;
+
+    state.enemies[3].entityType = ENEMY;
+    state.enemies[3].textureID = enemyTextureID;
+    state.enemies[3].position = glm::vec3(6.0f, -6.0f, 0);
+    state.enemies[3].spawn = glm::vec3(4.0f, -5.0f, 0);
+    state.enemies[3].speed = 0.8;
+    state.enemies[3].aiType = HORIZONTAL_PATROLLER;
+    state.enemies[3].aiState = PATROL;
+    state.enemies[3].isActive = true;
 }
 
 void Level1::Update(float deltaTime) {

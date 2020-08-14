@@ -17,8 +17,8 @@
 
 enum EntityType {PLAYER, PLATFORM, ENEMY};
 
-enum AIType { WALKER, WAITANDGO, LURCHER, GLIDER, FOLLOWER, GUARD};
-enum AIState {IDLE, WALKING, ATTACKING, LURCHING, GLIDING, FOLLOWING};
+enum AIType { FOLLOWER, GUARD, VERTICAL_PATROLLER, HORIZONTAL_PATROLLER};
+enum AIState {IDLE, FOLLOW, PATROL};
 
 class Entity {
 public:
@@ -87,4 +87,6 @@ public:
     void AIGlider(Entity *player);
     void AIFollower(Entity* player);
     void AIGuard(Entity* player);
+    void AIVerticalPatroller(Entity* player);
+    void AIHorizontalPatroller(Entity* player);
 };

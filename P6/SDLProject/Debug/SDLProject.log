@@ -1,2 +1,6 @@
-﻿  Entity.cpp
-  SDLProject.vcxproj -> C:\Users\ephyw\Desktop\github projects\Ben\CS-UY3113\P6\SDLProject\Debug\SDLProject.exe
+﻿  Level1.cpp
+C:\Users\ephyw\Desktop\github projects\CSUY3113\P6\SDLProject\Level1.cpp(55,33): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\ephyw\Desktop\github projects\CSUY3113\P6\SDLProject\Level1.cpp(64,33): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\ephyw\Desktop\github projects\CSUY3113\P6\SDLProject\Level1.cpp(73,33): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\ephyw\Desktop\github projects\CSUY3113\P6\SDLProject\Level1.cpp(82,33): warning C4305: '=': truncation from 'double' to 'float'
+  SDLProject.vcxproj -> C:\Users\ephyw\Desktop\github projects\CSUY3113\P6\SDLProject\Debug\SDLProject.exe
