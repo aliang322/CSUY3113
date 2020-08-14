@@ -1,0 +1,16 @@
+C:\Users\calia\Documents\GitHub\CS-UY3113\P1\SDLProject\Debug\SDLProject.exe
+C:\Users\calia\Documents\GitHub\CS-UY3113\P1\SDLProject\Debug\SDLProject.pdb
+C:\Users\calia\Documents\GitHub\CS-UY3113\P2\SDLProject\Debug\SDLProject.exe
+C:\Users\calia\Documents\GitHub\CS-UY3113\P2\SDLProject\Debug\SDLProject.pdb
+C:\Users\calia\Desktop\SDLProject\Debug\SDLProject.exe
+C:\Users\calia\Desktop\SDLProject\Debug\SDLProject.pdb
+C:\Users\calia\Documents\GitHub\CS-UY3113\P3\SDLProject\Debug\SDLProject.exe
+C:\Users\calia\Documents\GitHub\CS-UY3113\P3\SDLProject\Debug\SDLProject.pdb
+C:\Users\calia\Documents\GitHub\CS-UY3113\P4\SDLProject\Debug\SDLProject.exe
+C:\Users\calia\Documents\GitHub\CS-UY3113\P4\SDLProject\Debug\SDLProject.pdb
+C:\Users\calia\Documents\GitHub\CS-UY3113\P5\SDLProject\Debug\SDLProject.exe
+C:\Users\calia\Documents\GitHub\CS-UY3113\P5\SDLProject\Debug\SDLProject.pdb
+C:\Users\calia\Documents\GitHub\CS-UY3113\P6\SDLProject\Debug\SDLProject.exe
+C:\Users\calia\Documents\GitHub\CS-UY3113\P6\SDLProject\Debug\SDLProject.pdb
+C:\Users\ephyw\Desktop\github projects\Ben\CS-UY3113\P6\SDLProject\Debug\SDLProject.exe
+C:\Users\ephyw\Desktop\github projects\Ben\CS-UY3113\P6\SDLProject\Debug\SDLProject.pdb
